@@ -13,7 +13,10 @@ exports.Listar = async (req, res) => {
 };
 
 exports.Criar = async (req, res) => {
+   
     const {nome} = req.body;
+    console.log(req.body);
+    console.log(nome);
     try{
         await clienteRepository.create({
             nome: nome

@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes, INTEGER } = require('sequelize');
 const database = require('../database/postgres');
 const Cliente = require('./Cliente');
 const Hotel = require('./Hotel');
@@ -12,7 +12,7 @@ const Reserva = database.define('reserva', {
     qtdeVagas:{
         type: DataTypes.INTEGER,
         allowNull: false
-    }
+    }    
 });
 
 Reserva.belongsTo(Cliente, {foreingKey: 'clienteId'});
