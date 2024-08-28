@@ -10,6 +10,18 @@ const Hotel = database.define('hotel', {
     nome: {
         type: DataTypes.STRING,
         allowNull: false
+    }, 
+    qtdeVagas:{
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    precoVaga : {
+        type : DataTypes.FLOAT,
+        allowNull : false
+    },
+    descricaoVaga : {
+        type : DataTypes.STRING,
+        allowNull: false
     }
 });
 

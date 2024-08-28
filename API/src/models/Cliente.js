@@ -12,6 +12,10 @@ const Cliente = database.define('cliente', {
         type : DataTypes.STRING,
         allowNull: false
     },
+    cpf : {
+        type : DataTypes.STRING,
+        allowNull: false
+    }
  });
 
  //Cliente.sync({alter: true})

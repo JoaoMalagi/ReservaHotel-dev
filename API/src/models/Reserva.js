@@ -8,16 +8,21 @@ const Reserva = database.define('reserva', {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
+    },   
+    reservaInicio : {
+        type : DataTypes.DATEONLY,
+        aloowNull : false
     },
-    qtdeVagas:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }    
+    reservaFim : {
+        type : DataTypes.DATEONLY,
+        aloowNull : false
+    }
+
 });
 
 Reserva.belongsTo(Cliente, {foreingKey: 'clienteId'});
 Reserva.belongsTo(Hotel, {foreingKey: 'hotelId'});
 
-//Reserva.sync()
+Reserva.sync()
 
 module.exports = Reserva;
