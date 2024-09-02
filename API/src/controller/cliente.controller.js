@@ -11,7 +11,6 @@ exports.Listar = async (req, res) => {
 
     }
 };
-
 exports.Criar = async (req, res) => {
    
     const {nome, cpf} = req.body;
@@ -26,5 +25,31 @@ exports.Criar = async (req, res) => {
     }
     catch(error){
         res.status(500).send({message: error});
+    }
+}
+exports.Editar = async (req, res) => {
+    const {nome, cpf} = req.body;
+    const { id } = req.params
+
+    try {
+        await clienteRepository.update({
+            nome: nome,
+            cpf: cpf,
+            where : {id : id}
+        });
+        res.status(200).send("Cliente editado com sucesso");
+    } catch (error) {
+        res.status(500).send({message : error});
+    }
+}
+exports.Deletar = async (req, body) => {
+    const { id } = req.params
+    try {
+        await clienteRepository.destroy({
+            where: {id : id }
+        });
+        res.stauts(200).send("Cliente deletado com sucesso")
+    } catch (error) {
+        res.status(500).send({message : error})
     }
 }

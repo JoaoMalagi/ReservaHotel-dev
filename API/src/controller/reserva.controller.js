@@ -1,6 +1,7 @@
 const reservaRepository = require('../models/Reserva')
 const hotelRepository = require('../models/Hotel')
 const { Op } = require('sequelize');
+const Reserva = require('../models/Reserva');
 
 exports.Listar = async(req, res) => {
     try {
@@ -41,5 +42,33 @@ exports.Criar = async(req, res) => {
     }
     else{
         res.status(500).send("Hotel sem vagas no momento")
+    }
+}
+exports.Editar = async(req, res) => {
+    const { id } = req.params;
+    const {nome,reservaInicio, reservaFim,clienteId,hotelId} = req.body;
+    try {
+        await reservaRepository.update({
+                 nome:nome,
+                 reservaInicio:reservaInicio,
+                 reservaFim:reservaFim,
+                 clienteId: clienteId,
+                 hotelId: hotelId,
+                 where: {id:id}
+        })
+        res.status(200).send("Reserva editada com sucesso")
+    } catch (error) {
+        res.status(500).send({message: error});
+    }
+}
+exports.Deletar = async (req, body) => {
+    const { id } = req.params
+    try {
+        await reservaRepository.destroy({
+            where: {id : id }
+        });
+        res.stauts(200).send("Reserva deletada com sucesso")
+    } catch (error) {
+        res.status(500).send({message : error})
     }
 }
