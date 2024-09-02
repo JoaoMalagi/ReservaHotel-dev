@@ -30,19 +30,21 @@ exports.Criar = async (req, res) => {
 exports.Editar = async (req, res) => {
     const {nome, cpf} = req.body;
     const { id } = req.params
-
+    console.log(id,nome,cpf)
     try {
         await clienteRepository.update({
             nome: nome,
-            cpf: cpf,
-            where : {id : id}
-        });
+            cpf: cpf,       
+        },{
+            where : {id : id},
+        }
+    );
         res.status(200).send("Cliente editado com sucesso");
     } catch (error) {
         res.status(500).send({message : error});
     }
 }
-exports.Deletar = async (req, body) => {
+exports.Deletar = async (req, res) => {
     const { id } = req.params
     try {
         await clienteRepository.destroy({

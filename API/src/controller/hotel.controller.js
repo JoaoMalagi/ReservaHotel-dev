@@ -46,14 +46,17 @@ exports.Editar = async(req, res) => {
             qtdeVagas:qtdeVagas,
             precoVaga:precoVaga,
             descricaoVaga:descricaoVaga,
-            where : {id :id}
-        })
+            },
+            {
+                where : {id : id},
+            }
+    )
         res.status(200).send("Hotel editado com sucesso")
     } catch (error) {
         res.status(500).send({message: error});
     }
 }
-exports.Deletar = async (req, body) => {
+exports.Deletar = async (req, res) => {
     const { id } = req.params
     try {
         await hotelRepository.destroy({
